@@ -13,6 +13,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
+import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.hamcrest.core.IsNot;
 import org.junit.Test;
@@ -68,5 +69,21 @@ public class HelloWorldTest {
 		assertThat("Maria", not("João"));
 		assertThat("Maria", anyOf(is("Maria"),is("Joaquina")));
 	}
+	
+	@Test
+	public void devoValidarBody() {
+		given()
+		.when()
+			.get("http://restapi.wcaquino.me/ola").
+		then()
+			.statusCode(200)
+			.body(is("Ola Mundo!"))
+			.body(containsString("Mundo"))
+			.body(is(not(nullValue())));
+		
+	}
+	
+	
+	
 
 }
