@@ -13,8 +13,9 @@ import io.restassured.response.Response;
  */
 public class HelloWorld {
 	public static void main(String[] args) {
-		Response request = RestAssured.request(Method.GET, "http://restapi.wcaquino.me/ola");
-		System.out.println(request.getBody().asString());
+		Response response = RestAssured.request(Method.GET, "http://restapi.wcaquino.me/ola");
+		System.out.println(response.getBody().asString());
+		System.out.println(response.getStatusCode());
 	}
 
 }
