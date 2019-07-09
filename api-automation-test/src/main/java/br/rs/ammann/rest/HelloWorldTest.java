@@ -13,9 +13,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
-import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
-import org.hamcrest.core.IsNot;
 import org.junit.Test;
 
 import io.restassured.http.Method;
