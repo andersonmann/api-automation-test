@@ -5,9 +5,7 @@ package br.rs.ammann.rest;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.request;
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Assert;
@@ -61,7 +59,21 @@ public class UseJasonTest {
 			.body("endereco.rua",is("Rua dos bobos"));
 	}
 	
-	
+	@Test
+	public void deveValidarLista() {
+		given()
+		.when()
+			.get("http://restapi.wcaquino.me/users/3").
+		then()
+			.statusCode(200)
+			.body("name", containsString("Ana"))
+			.body("filhos", hasSize(2))
+			.body("filhos[0].name", is("Zezinho"))
+			.body("filhos[1].name", is("Luizinho"))
+			.body("filhos.name", hasItem("Zezinho"))
+			.body("filhos.name", hasItems("Zezinho", "Luizinho"))
+		;
+	}
 	
 	
 	
